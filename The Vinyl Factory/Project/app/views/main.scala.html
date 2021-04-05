@@ -1,0 +1,79 @@
+@(pagename:String,user: models.users.User)(content:Html)
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
+	<link rel="icon" type="image/png" href="@routes.Assets.versioned("images/icon.jpeg")">
+	
+	
+	<title>@pagename</title>
+    </head>
+    <body>
+	<nav class="navbar navbar-inverse">
+	    <div class="container-fluid">
+		<div class="navbar-header">
+		    <a class="navbar-brand" href="#"></a>
+		</div>
+		<ul class="nav navbar-nav">
+            <li @if(pagename == "Home") {class="active"}><a href="@routes.HomeController.index()">Home</a></li>
+		    <li @if(pagename == "On Sale") {class="active"}><a href="@routes.HomeController.onsale()">View Vinyls</a></li>
+			<li @if(pagename == "About") {class="active"}><a href="@routes.HomeController.about()">Contact us</a></li>
+			
+			@if((user != null) && ("admin".equals(user.getRole()))) {
+				<li @if(pagename == "Administrators") {class="active"}><a href="@routes.HomeController.usersAdmin()">View Admin</a></li>
+				<li @if(pagename == "Customers") {class="active"}><a href="@routes.HomeController.usersCustomer()">View Customers</a></li>
+
+			}
+			
+			
+			<li @if(pagename == "Log In") {class="active"}>
+				@if(user != null) {
+					<a href="@routes.LoginController.logout()">Log Out</a>
+					<li><a href="@routes.ShoppingCtrl.viewOrders()">View Orders</a></li>
+					<a href="@routes.ShoppingCtrl.showBasket()"><button type="button" class="btn btn-dark"><i class="glyphicon glyphicon-shopping-cart"></i></a></button>
+				} else {
+					<a href="@routes.LoginController.login()">Log In</a>
+					<li @if(pagename == "Register") {class="active"}><a href="@routes.LoginController.registerUser()">Register user</a></li>
+			</li>
+} 
+		</ul>
+
+	    </div>
+	<img src ="@routes.Assets.versioned("images/banner2.jpg")">
+	</nav>
+	
+			
+		
+	<div class="container-fluid">
+	    <div class="row">
+		<div class="col-sm-2">
+		    <div class="well sidecol">
+			<h2>News</h2>
+			<h3>Sale on all vinyls coming soon!!
+				New vinyls every few days!!
+			</h3>
+		    </div>
+		</div>
+		<div class="col-sm-8">
+		    <div class="midcol">
+			@content
+		    </div>
+		</div>
+	    </div>
+	    <div class="row">
+		<div class="col-sm-12">
+		    <div class="well footer">
+			<p>© 2019,TheVinylFactory</p>
+			<a href="https://github.com/DylanNelson99/project2ndYear"><img src="@routes.Assets.versioned("images/github.jpeg")"></a>
+			<a href="https://www.facebook.com/"><img src="@routes.Assets.versioned("images/facebook.jpeg")"></a>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<script src ="@routes.Assets.versioned("javascripts/main.js")"></script>
+    </body>
+</html>
+

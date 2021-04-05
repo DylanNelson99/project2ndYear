@@ -1,0 +1,23 @@
+@(user: models.users.User)
+@main("About",user){
+	<h1>Contact us</h1>
+<h2>Fill this in and we will get back to you:)</h2>
+<b><p>Once you submit your Query, we will try to get back to you as soon as possible</p></b>
+	<form>
+First name:<br>
+<input type="text" name="firstname"><br>
+Last name:<br>
+<input type="text" name="lastname"><br>
+Email:<br>
+<input type="text" name="Email"><br>
+Mobile number:<br>
+<input type="text" name="Mobilenumber"><br>
+Short summary of query:<br>
+<textarea name="message" rows="10" cols="30">
+</textarea><br>
+<input type="submit" value="Submit">
+</form>
+</div><br>
+
+	</main>
+}   

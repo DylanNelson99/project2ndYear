@@ -1,0 +1,10 @@
+2019-03-04 20:03:45 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "PLAY_EVOLUTIONS" not found; SQL statement:
+select id, hash, apply_script, revert_script, state, last_problem from play_evolutions where state like 'applying_%' [42102-197]
+2019-03-06 10:37:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "CATEGORY_ITEM_ON_SALE" already exists; SQL statement:
+create table category_item_on_sale (
+  category_id                   bigint not null,
+  item_on_sale_id               bigint not null,
+  constraint pk_category_item_on_sale primary key (category_id,item_on_sale_id)
+) [42101-197]
